@@ -15,30 +15,30 @@ It was a fun experiment, and in the future I think I'll spend some time training
 ## Threat Modeling Article Links
 Also note, I didn't do any real editing other than adding the disclaimer header. Some of the topics are redundant - and you'll see places where the bot decided to use "Chapter X" that don't fit with the rest of the formatting. That's ok... this was meant to be edited... but, IN THE NAME OF SCIENCE! \(and lack of time\) I didn't edit any of it.
 
-- [Part 1](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-1-introduction)
-- [Part 2](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-2-what-is-stridedread-hybrid-model)
-- [Part 3](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-3-what-are-the-benefits-of-using-the-stridedread-hybrid-model)
-- [Part 4](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-4-how-can-you-apply-the-stridedread-model-to-software-development)
-- [Part 5](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-5-identifying-threats-and-risks)
-- [Part 6](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-6-what-is-a-threat)
-- [Part 7](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-7-identifying-and-classifying-threats)
-- [Part 8](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-8-assessing-risk-impact-and-likelihoo)
-- [Part 9](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-9-developing-mitigations-with-the-stride-approach)
-- [Part 10](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-10-understanding-the-stride-framework)
-- [Part 11](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-11-identifying-spoofing-tampering-repudiation-information-disclosure-denial-of-service-and-elevation-of-privilege)
-- [Part 12](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-12-implementing-controls-with-the-dread-model)
-- [Part 13](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-13-understanding-the-dread-syste)
-- [Part 14](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-14-applying-damage-potential-reproducibility-exploitability-affected-users-and-discoverability-scoring-systems)
-- [Part 15](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-15-putting-it-all-together-building-security-into-software-development)
-- [Part 16](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-16-building-security-requirements-into-development-cycles)
-- [Part 17](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-17-defining-a-secure-development-lifecycle)
-- [Part 18](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-18-integrating-stridedread-into-the-testing-process)
-- [Part 19](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-19-summarizing-the-benefits-of-using-stridedread-model)
-- [Part 20](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-20-identifying-further-steps-for-securing-software-development)
-- [Part 21](https://hashtagcyber.github.io/2022-12-10-threat-modeling-part-21-conclusion)
+- [Part 1](2022-12-10-threat-modeling-part-1-introduction.md)
+- [Part 2](2022-12-10-threat-modeling-part-2-what-is-stridedread-hybrid-model.md)
+- [Part 3](2022-12-10-threat-modeling-part-3-what-are-the-benefits-of-using-the-stridedread-hybrid-model.md)
+- [Part 4](2022-12-10-threat-modeling-part-4-how-can-you-apply-the-stridedread-model-to-software-development.md)
+- [Part 5](2022-12-10-threat-modeling-part-5-identifying-threats-and-risks.md)
+- [Part 6](2022-12-10-threat-modeling-part-6-what-is-a-threat.md)
+- [Part 7](2022-12-10-threat-modeling-part-7-identifying-and-classifying-threats.md)
+- [Part 8](2022-12-10-threat-modeling-part-8-assessing-risk-impact-and-likelihoo.md)
+- [Part 9](2022-12-10-threat-modeling-part-9-developing-mitigations-with-the-stride-approach.md)
+- [Part 10](2022-12-10-threat-modeling-part-10-understanding-the-stride-framework.md)
+- [Part 11](2022-12-10-threat-modeling-part-11-identifying-spoofing-tampering-repudiation-information-disclosure-denial-of-service-and-elevation-of-privilege.md)
+- [Part 12](2022-12-10-threat-modeling-part-12-implementing-controls-with-the-dread-model.md)
+- [Part 13](2022-12-10-threat-modeling-part-13-understanding-the-dread-syste.md)
+- [Part 14](2022-12-10-threat-modeling-part-14-applying-damage-potential-reproducibility-exploitability-affected-users-and-discoverability-scoring-systems.md)
+- [Part 15](2022-12-10-threat-modeling-part-15-putting-it-all-together-building-security-into-software-development.md)
+- [Part 16](2022-12-10-threat-modeling-part-16-building-security-requirements-into-development-cycles.md)
+- [Part 17](2022-12-10-threat-modeling-part-17-defining-a-secure-development-lifecycle.md)
+- [Part 18](2022-12-10-threat-modeling-part-18-integrating-stridedread-into-the-testing-process.md)
+- [Part 19](2022-12-10-threat-modeling-part-19-summarizing-the-benefits-of-using-stridedread-model.md)
+- [Part 20](2022-12-10-threat-modeling-part-20-identifying-further-steps-for-securing-software-development.md)
+- [Part 21](2022-12-10-threat-modeling-part-21-conclusion.md)
 
 ## Getting Started
-Note: OpenAI uses a "credit" system for billing. You get $18 of free credits when you sign up. During testing of my code, and generation of these 21 posts, I used $0.98 worth of my free credits. All in all - I think the pricing is fair :) 
+Note: OpenAI uses a "credit" system for billing. You get $18 of free credits when you sign up. During testing of my code, and generation of these 21 posts, I used $0.98 worth of my free credits. All in all - I think the pricing is fair :.md) 
 ---
 1. Signup for an account at [openai.com](https://openai.com)
 2. Generate an openai API key
@@ -110,7 +110,7 @@ def sanitize_title(blog_title):
 
 def write_blog(blog_title, blog_text):
     datestring = datetime.datetime.now().strftime('%Y-%m-%d')
-    fname = 'https://hashtagcyber.github.io/output/{}-{}.md'.format(datestring, sanitize_title(blog_title))
+    fname = 'output/{}-{}.md'.format(datestring, sanitize_title(blog_title))
     with open(fname,'w') as f:
         f.write(blog_text)
 
