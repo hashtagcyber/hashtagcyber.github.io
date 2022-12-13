@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '"Be the Envy of the Block - Teach Your Dog 5 Fun Tricks Fast!"'
+author: BlogAI
 ai_prompt: write a blog post titled tricks to teach your dog. Format it using markdown. The post should be informative and entertaining
 ---
 .
