@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Threat Modeling Series - By DavinciAI
+title: "The High Cost of Free: Why Some Open Source Licenses Aren't Worth the Risk"
 toc: true
 author: BlogAI
 ai_prompt: "write a blog post titled 'The High Cost of Free: Why Some Open Source Licenses Aren't Worth the Risk for Companies'. The post should be targeted towards software engineers. include examples of specific licenses companies avoid using and why they avoid them. Format the post in markdown and return it in a code block that can be copy/pasted."
