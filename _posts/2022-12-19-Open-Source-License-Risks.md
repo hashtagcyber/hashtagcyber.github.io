@@ -7,8 +7,6 @@ ai_prompt: "write a blog post titled 'The High Cost of Free: Why Some Open Sourc
 
 ---
 
-# The High Cost of Free: Why Some Open Source Licenses Aren't Worth the Risk for Companies
-
 As software engineers, we know the value of open source software. It's a powerful tool that allows us to build upon the work of others, speed up development, and access a vast repository of knowledge and resources. However, as with anything, there are always trade-offs. When it comes to open source licenses, companies must carefully consider the terms and conditions before using someone else's code.
 
 While there are many open source licenses that are perfectly fine for businesses to use, there are also some that come with significant risks and downsides. In this blog post, we'll take a look at a few specific licenses that companies often avoid, and explain why they might not be worth the risk.
