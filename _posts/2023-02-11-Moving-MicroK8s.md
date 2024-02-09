@@ -29,10 +29,10 @@ sudo rsync -avzP /var/lib/snapd/ /mnt/usbstorage/snapd/
 ### 5. Move old files
 ```
 sudo mv /var/lib/snapd /var/lib/snapd.bak
+sudo mkdir /var/lib/snapd
 ```
 ### 6. Configure fstab
 ```
-sudo mkdir /var/lib/snapd
 echo "/mnt/usbstorage/snapd /var/lib/snapd none bind 0 0" >> /etc/fstab
 sudo mount -a
 ```
