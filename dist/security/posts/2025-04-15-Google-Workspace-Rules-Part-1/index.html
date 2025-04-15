@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v5.4.0"><meta name="description" content="Three Google Workspace patterns we often fail to follow"><title>Rules for Google Workspace Management : Part 1</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/index.kH5J4z23.css">
+<style>html{font-family:Inter,sans-serif}body{margin:0;padding:0;min-height:100vh;display:flex;flex-direction:column}main{flex:1}
+</style></head> <body class="min-h-screen bg-gray-50"> <header class="bg-white shadow-sm"> <div class="container mx-auto px-4 py-4"> <nav class="flex justify-between items-center"> <a href="/" class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> Matt Domko </a> <div class="hidden md:flex space-x-6"> <a href="/leadership" class="text-gray-700 hover:text-primary">Leadership</a> <a href="/security" class="text-gray-700 hover:text-primary">Security</a> <a href="/talks" class="text-gray-700 hover:text-primary">Talks</a> <a href="/tools" class="text-gray-700 hover:text-primary">Tools</a> <a href="/books" class="text-gray-700 hover:text-primary">Books</a> <a href="/about" class="text-gray-700 hover:text-primary">About</a> <a href="/contact" class="text-gray-700 hover:text-primary">Contact</a> </div> <button class="md:hidden text-gray-700" id="menu-toggle"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </nav> <div class="md:hidden hidden" id="mobile-menu"> <div class="flex flex-col space-y-4 py-4"> <a href="/leadership" class="text-gray-700 hover:text-primary">Leadership</a> <a href="/security" class="text-gray-700 hover:text-primary">Security</a> <a href="/talks" class="text-gray-700 hover:text-primary">Talks</a> <a href="/tools" class="text-gray-700 hover:text-primary">Tools</a> <a href="/books" class="text-gray-700 hover:text-primary">Books</a> <a href="/contact" class="text-gray-700 hover:text-primary">Contact</a> </div> </div> </div> </header> <main class="container mx-auto px-4 py-8">  <article class="max-w-3xl mx-auto"> <div class="mb-8"> <a href="/security" class="text-sm text-primary hover:underline">
+&larr; Back to Security </a> </div> <header class="mb-8"> <h1 class="text-4xl font-bold mb-2">Rules for Google Workspace Management : Part 1</h1> <div class="text-gray-600 mb-4"> <time datetime="2025-04-15T00:00:00.000Z">April 14, 2025</time> </div> <div class="flex flex-wrap gap-2"> <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full"> security </span><span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full"> engineering </span><span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full"> googleworkspace </span><span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full"> corpit </span> </div> </header> <div class="prose prose-lg max-w-none"> <p>The first “Corp IT” addition to my <a href="/leadership/posts/2025-04-06-CTO-Guide-Lessons-Learned-Along-The-Way">CTO Guide Series</a></p>
+<h2 id="rule-1-google-accounts-are-for-humans">Rule 1: Google Accounts are for Humans</h2>
+<p>As your organization grows, you’ll find yourself in need of at least one of the following email addresses:</p>
+<ul>
+<li><a href="mailto:socialmedia@totallylegitsite.com">socialmedia@totallylegitsite.com</a></li>
+<li><a href="mailto:support@totallylegitsite.com">support@totallylegitsite.com</a></li>
+<li><a href="mailto:jobs@totallylegitsite.com">jobs@totallylegitsite.com</a></li>
+<li><a href="mailto:security@totallylegitsite.com">security@totallylegitsite.com</a></li>
+</ul>
+<p>These are known as “utility mailboxes” — they exist so that people outside of the organization have a clear way of connecting with the company via email. The naive approach to creating them would be:</p>
+<ol>
+<li>Login to <a href="https://admin.google.com">admin.google.com</a></li>
+<li>Create a new user with the name “Social Media”</li>
+<li>Send the password to whoever manages your social media presence</li>
+</ol>
+<p><strong>The downside to this approach?</strong></p>
+<ul>
+<li>You’ve just created what will likely be a “shared account.” Google’s built-in account takeover protections will struggle to believe that you’ve made it acceptable for multiple humans to share a password. This results in account security notifications, forced logouts, and more MFA prompts than anyone wants to deal with.</li>
+<li>If an employee leaves the company, you will need to rotate the password of every shared account they had access to.</li>
+<li>You’re now paying $27.99 a month to Google for something that they already give you a way to do for free.</li>
+</ul>
+<p><strong>So, what do we do instead?</strong></p>
+<ul>
+<li>Create a new Google Group at <a href="https://groups.google.com">groups.google.com</a> (ensure you’re logged in with your corporate account)</li>
+<li>Enable the <em>Collaborative Inbox</em> feature</li>
+<li>Add anyone who needs access to that mailbox as a member</li>
+</ul>
+<p>Everyone in that group will now receive mail sent to <a href="mailto:socialmedia@totallylegitsite.com">socialmedia@totallylegitsite.com</a></p>
+<hr>
+<h2 id="rule-2-delegate-brand-accounts">Rule 2: Delegate Brand Accounts</h2>
+<p><code>With a shiny new email address in hand, the avid marketer browses to Twitter, ready to create their new Brand account.</code></p>
+<insert classic="" comic="" strip="">
+<p>Most services with an advertising platform have a way to delegate access to their employees:</p>
+<ul>
+<li>Twitter has the <a href="https://help.x.com/en/managing-your-account/how-to-use-the-delegate-feature">Delegate feature</a></li>
+<li>Facebook has the <a href="https://www.facebook.com/business/tools/meta-business-suite">Business Suite</a> that covers all of their platforms (Facebook, Instagram, and Messenger)</li>
+<li>YouTube has <a href="https://support.google.com/youtube/topic/9267757">Brand Accounts</a></li>
+</ul>
+<p>Instead of having everyone log in as <a href="mailto:socialmedia@totallylegitsite.com">socialmedia@totallylegitsite.com</a>, have them create an account using their corporate email. Then, delegate access to them.</p>
+<hr>
+<h2 id="rule-3-if-it-doesnt-support-saml-you-probably-shouldnt-use-it">Rule 3: If it Doesn’t Support SAML, You Probably Shouldn’t Use It</h2>
+<p>Sure, when you’re bootstrapping, it’s okay to use free-tier and individually licensed tools. We make trade-offs to keep the business alive all the time. However, as you approach the point where Google Hangouts says, “we’ve automatically muted you due to the size of the call”… it’s time to think about:</p>
+<ul>
+<li>
+<p><strong>Can I build a dependency on this product? Are they at least as stable as I am?</strong></p>
+<ul>
+<li>Products designed to support individual users, without an enterprise plan, will likely have gaps that introduce risks to your company over the long term. Things like <em>Audit Logging</em> and <em>Data Export</em> typically come standard with an enterprise plan.</li>
+</ul>
+</li>
+<li>
+<p><strong>How will I manage access and licensing of this tool once we reach 100 employees?</strong></p>
+<ul>
+<li>Many SaaS products charge based on the number of users (Jira, GitHub, Figma, etc.). Having a centralized way to offboard users will save you money.</li>
+<li>You’ll want to grant access to some tools based on the team they are on:
+<ul>
+<li>The marketing team will all need access to Mailchimp</li>
+<li>The support team will all need access to Zendesk</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Google Workspace allows you to create <em>Custom Apps</em> and grant access to them based on group membership. A solid workflow looks something like this:</p>
+<ol>
+<li>
+<p>Create a Google Group called <code>acl-app-admins</code></p>
+<ul>
+<li>We will use this group to grant ourselves access to the app once SSO is configured</li>
+<li>The <code>acl</code> prefix is important. It’s how you tag a group as being used to grant permissions
+<ul>
+<li>In the future, you can set up automation so that membership for most groups is self-service for 24 hours. This allows your team to unblock themselves in an emergency.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Create the new <em>Custom SAML app</em> using the Google Workspace Admin console</p>
+<ul>
+<li><a href="https://support.google.com/a/answer/6087519?hl=en">Google Support: Set up SAML app</a></li>
+</ul>
+</li>
+<li>
+<p>Configure SSO for the product, and grant your <code>acl-app-admins</code> group access to it</p>
+</li>
+<li>
+<p>Go to Gmail, click the 9-dot box in the top right corner, then scroll down and click the app you just created</p>
+</li>
+<li>
+<p>Once things are working, create a new group <code>acl-product-name-access</code> and enable the SAML App for that group</p>
+</li>
+<li>
+<p>Employees in that group will now see the app you created in their “9-dot” dropdown</p>
+</li>
+</ol></insert> </div> </article>  </main> <footer class="bg-gray-800 text-white py-8"> <div class="container mx-auto px-4"> <div class="flex flex-col md:flex-row justify-between items-center"> <div class="mb-4 md:mb-0"> <p>© 2025 Matthew Domko. All rights reserved.</p> </div> <div class="flex space-x-4"> <a href="https://twitter.com/hashtagcyber" class="text-gray-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"> <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"></path> </svg> </a> <a href="https://linkedin.com/in/matthewdomko" class="text-gray-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path> </svg> </a> <a href="https://github.com/hashtagcyber" class="text-gray-300 hover:text-white"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> </div> </div> </div> </footer> <script type="module">const e=document.getElementById("menu-toggle"),n=document.getElementById("mobile-menu");e&&n&&e.addEventListener("click",()=>{n.classList.toggle("hidden")});</script> </body> </html> 
