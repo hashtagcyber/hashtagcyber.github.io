@@ -4,6 +4,10 @@ description: "A list of conferences I've spoken at"
 pubDate: 2025-01-03T00:00:00.000Z
 slug: "conference-talk"
 ---
+### BSides Seattle 2026:
+
+[WTF is an Org Chart : Building Security Teams](https://www.youtube.com/watch?v=oVqGd5XKUaM)
+
 ### DEFCON 32:
 
 [Data on Demand: The challenges of building a privacy focused AI Device](https://youtu.be/jS3iNUfYtLA?si=TRJ_IXCP9xWJeSql)
