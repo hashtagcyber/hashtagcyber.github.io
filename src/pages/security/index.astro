@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import CollectionIndex from '../../components/CollectionIndex.astro';
+
+const entries = await getCollection('security');
+---
+
+<CollectionIndex
+  pageTitle="Security | The Musings of Matt Domko"
+  pageHeading="Security"
+  lead="Expert analysis, insights, and best practices on cybersecurity and information security."
+  collection="security"
+  entries={entries}
+/>

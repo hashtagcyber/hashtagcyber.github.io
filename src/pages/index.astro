@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+async function newestFrom(collectionName: 'leadership' | 'security' | 'talks') {
+  const entries = await getCollection(collectionName);
+  return entries
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
+}
+
+const [leadershipTop, securityTop, talksTop] = await Promise.all([
+  newestFrom('leadership'),
+  newestFrom('security'),
+  newestFrom('talks'),
+]);
+
+const featured = [
+  leadershipTop && {
+    href: `/leadership/posts/${leadershipTop.slug}`,
+    title: leadershipTop.data.title,
+    description: leadershipTop.data.description,
+    pubDate: leadershipTop.data.pubDate,
+  },
+  securityTop && {
+    href: `/security/posts/${securityTop.slug}`,
+    title: securityTop.data.title,
+    description: securityTop.data.description,
+    pubDate: securityTop.data.pubDate,
+  },
+  talksTop && {
+    href: `/talks/posts/${talksTop.slug}`,
+    title: talksTop.data.title,
+    description: talksTop.data.description,
+    pubDate: talksTop.data.pubDate,
+  },
+].filter(Boolean) as Array<{ href: string; title: string; description?: string; pubDate: Date }>;
+---
+
+<BaseLayout>
+  <section class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8 text-center">Featured Content</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        {featured.map((post) => (
+          <PostCard
+            href={post.href}
+            title={post.title}
+            description={post.description}
+            pubDate={post.pubDate}
+          />
+        ))}
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-8">
+        <a href="/leadership" align="right">on Leadership</a>
+        <a href="/security" align="right">on Security</a>
+        <a href="/talks" align="right">Talks/Podcasts</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

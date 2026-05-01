@@ -1,10 +1,17 @@
+# build artifacts (dist/ stays committed for GitHub Pages deploy)
+.astro/
+node_modules/
+
+# jekyll legacy
 _site
-.DS_Store
 .jekyll
 .jekyll-metadata
 .bundle
 .sass-cache
-Gemfile
-Gemfile.lock
-node_modules
-package.json
+
+# os
+.DS_Store
+
+# env
+.env
+.env.production

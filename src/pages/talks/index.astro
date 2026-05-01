@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import CollectionIndex from '../../components/CollectionIndex.astro';
+
+const entries = await getCollection('talks');
+---
+
+<CollectionIndex
+  pageTitle="Talks & Presentations | The Musings of Matt Domko"
+  pageHeading="Talks & Presentations"
+  lead="Presentations, talks, and workshops on industry-relevant topics."
+  collection="talks"
+  entries={entries}
+/>

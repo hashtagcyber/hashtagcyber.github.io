@@ -1,0 +1,39 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PostLayout from '../../../layouts/PostLayout.astro';
+
+type Coll = 'leadership' | 'security' | 'talks';
+
+export async function getStaticPaths() {
+  const collections: Coll[] = ['leadership', 'security', 'talks'];
+  const paths = [];
+  for (const name of collections) {
+    const entries = await getCollection(name);
+    for (const entry of entries) {
+      paths.push({
+        params: { collection: name, slug: entry.slug },
+        props: { entry, collection: name },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  entry: CollectionEntry<Coll>;
+  collection: Coll;
+}
+
+const { entry, collection } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<PostLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  pubDate={entry.data.pubDate}
+  tags={entry.data.tags}
+  collection={collection}
+>
+  <Content />
+</PostLayout>

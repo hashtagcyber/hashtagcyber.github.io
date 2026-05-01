@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import CollectionIndex from '../../components/CollectionIndex.astro';
+
+const entries = await getCollection('leadership');
+---
+
+<CollectionIndex
+  pageTitle="Leadership | The Musings of Matt Domko"
+  pageHeading="Leadership"
+  lead="My thoughts on leadership and building high performing teams."
+  collection="leadership"
+  entries={entries}
+/>

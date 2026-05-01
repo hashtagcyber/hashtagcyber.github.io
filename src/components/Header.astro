@@ -1,0 +1,57 @@
+---
+const navLinks = [
+  { href: '/leadership', label: 'Leadership' },
+  { href: '/security', label: 'Security' },
+  { href: '/talks', label: 'Talks' },
+  { href: '/tools', label: 'Tools' },
+  { href: '/books', label: 'Books' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+const mobileLinks = navLinks.filter((l) => l.href !== '/about');
+---
+
+<header class="bg-white shadow-sm">
+  <div class="container mx-auto px-4 py-4">
+    <nav class="flex justify-between items-center">
+      <a
+        href="/"
+        class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+      >
+        Matt Domko
+      </a>
+      <div class="hidden md:flex space-x-6">
+        {navLinks.map((l) => (
+          <a href={l.href} class="text-gray-700 hover:text-primary">{l.label}</a>
+        ))}
+      </div>
+      <button class="md:hidden text-gray-700" id="menu-toggle" aria-label="Toggle menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </nav>
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-4 py-4">
+        {mobileLinks.map((l) => (
+          <a href={l.href} class="text-gray-700 hover:text-primary">{l.label}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+  }
+</script>

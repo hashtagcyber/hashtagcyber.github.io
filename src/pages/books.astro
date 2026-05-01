@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { books } from '../data/books';
+---
+
+<BaseLayout title="Book List | The Musings of Matt Domko">
+  <div class="max-w-6xl mx-auto">
+    <header class="mb-10">
+      <h1 class="text-4xl font-bold mb-4">Recommended Books</h1>
+      <p class="text-xl text-gray-600">
+        A curated collection of books that have influenced my professional journey and thinking.
+      </p>
+    </header>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {books.map((book) => (
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          <div class="p-6">
+            <div class="flex items-start">
+              <div>
+                <h3 class="text-xl font-semibold mb-1">{book.title}</h3>
+                <p class="text-gray-600 text-sm mb-2">by {book.authors}</p>
+              </div>
+            </div>
+            <p class="text-gray-700 mt-4 mb-4">{book.description}</p>
+            <a href={book.url} target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
+              View on Amazon &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
