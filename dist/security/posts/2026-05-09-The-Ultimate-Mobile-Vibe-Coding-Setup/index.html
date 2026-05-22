@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="description" content="Self-hosting Claude Code on a dusty stick PC so I can vibe-code from an iPad anywhere — boot service, remote control, and the keyboard that ties it together."><title>The Ultimate Mobile Vibe Coding Setup</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/_slug_.CN-XCOOL.css">
+<style>html{font-family:Inter,sans-serif}body{margin:0;padding:0;min-height:100vh;display:flex;flex-direction:column}main{flex:1}
+</style></head> <body class="min-h-screen bg-gray-50"> <header class="bg-white shadow-sm"> <div class="container mx-auto px-4 py-4"> <nav class="flex justify-between items-center"> <a href="/" class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+Matt Domko
+</a> <div class="hidden md:flex space-x-6"> <a href="/leadership" class="text-gray-700 hover:text-primary">Leadership</a><a href="/security" class="text-gray-700 hover:text-primary">Security</a><a href="/talks" class="text-gray-700 hover:text-primary">Talks</a><a href="/tools" class="text-gray-700 hover:text-primary">Tools</a><a href="/books" class="text-gray-700 hover:text-primary">Books</a><a href="/about" class="text-gray-700 hover:text-primary">About</a><a href="/contact" class="text-gray-700 hover:text-primary">Contact</a> </div> <button class="md:hidden text-gray-700" id="menu-toggle" aria-label="Toggle menu"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </nav> <div class="md:hidden hidden" id="mobile-menu"> <div class="flex flex-col space-y-4 py-4"> <a href="/leadership" class="text-gray-700 hover:text-primary">Leadership</a><a href="/security" class="text-gray-700 hover:text-primary">Security</a><a href="/talks" class="text-gray-700 hover:text-primary">Talks</a><a href="/tools" class="text-gray-700 hover:text-primary">Tools</a><a href="/books" class="text-gray-700 hover:text-primary">Books</a><a href="/contact" class="text-gray-700 hover:text-primary">Contact</a> </div> </div> </div> </header> <script type="module">const e=document.getElementById("menu-toggle"),t=document.getElementById("mobile-menu");e&&t&&e.addEventListener("click",()=>t.classList.toggle("hidden"));</script> <main class="container mx-auto px-4 py-8">  <article class="max-w-3xl mx-auto"> <div class="mb-8"> <a href="/security" class="text-sm text-primary hover:underline">
+&larr; Back to Security </a> </div> <header class="mb-8"> <h1 class="text-4xl font-bold mb-2">The Ultimate Mobile Vibe Coding Setup</h1> <div class="text-gray-600 mb-4"> <time datetime="2026-05-09T00:00:00.000Z">May 8, 2026</time> </div> <div class="flex flex-wrap gap-2"> <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">security</span> </div> </header> <div class="prose prose-lg max-w-none">  <h2 id="it-only-took-10-years">It only took 10 years…</h2>
+<p>There is something magical about being able to create code and tinker with software “anywhere”. In 2010, I bought my first netbook and thought, “No way, I can program Arduino with this… I can configure Cisco gear with this… I can do ANYTHING!” The battery life was GREAT for the time (4 hours maybe?), and it could even run World of Warcraft.</p>
+<p>Since then, I’ve experimented with a few different ideas on how to “do nerdy things” wherever I am:</p>
+<ul>
+<li>JupyterHub with some customizations that allowed me to self-host VSCode running in a browser</li>
+<li>Using VNC on an iPad connected to a remote desktop server</li>
+<li>Chrome Remote Desktop</li>
+</ul>
+<p>These were OK, but I ran into a few common problems:</p>
+<ul>
+<li>Special characters, keyboard shortcuts, and UX designed for desktop did not translate well to a mobile keyboard</li>
+<li>Cramming a desktop environment into a netbook screen or Chromebook tab did not work well… it’s just too small</li>
+</ul>
+<h2 id="enter-vibecoding">Enter Vibecoding</h2>
+<p>My home lab exists because I want to actually understand the technology that makes “engineering excellence” look easy.</p>
+<ul>
+<li>I want to understand how Argo works</li>
+<li>I want to understand how Helm works</li>
+<li>I want to understand how k8s works</li>
+</ul>
+<p>The great thing about running this at home is that now my agents can too.</p>
+<ul>
+<li>Agents can create PRs</li>
+<li>PRs trigger container build jobs</li>
+<li>Merging a PR updates the deployed version of a container in my Helm charts</li>
+<li>ArgoCD auto-deploys those changes</li>
+</ul>
+<p>And because it all lives on the lab network, the entire loop is reachable from my couch — or anywhere else — with nothing more than an iPad.</p>
+<h2 id="the-winning-setup">The Winning Setup</h2>
+<p>My new favorite thing has two parts:</p>
+<ul>
+<li>A dusty old stick PC</li>
+<li>An iPad</li>
+</ul>
+<h3 id="setup-the-linux-machine">Setup the Linux Machine</h3>
+<p>This is where we will ACTUALLY be running Claude Code</p>
+<ol>
+<li>Install Ubuntu and configure SSH</li>
+<li>Configure <code>kubectl</code> so that Claude can debug the cluster</li>
+<li>Configure <code>gh</code> so that Claude can check Actions workflows and merge PRs</li>
+<li>Configure <code>mosh</code> so that SSH clients are “always” connected</li>
+<li>Install Claude Code</li>
+<li>Create a custom service that runs <code>claude remote-control</code> at boot</li>
+</ol>
+<h4 id="the-boot-service">The boot service</h4>
+<p>I want <code>claude remote-control</code> to come up automatically on boot, survive crashes, and stay reachable even if the SSH/<code>mosh</code> session drops. The trick is to run it inside a detached <code>tmux</code> session, and let <code>systemd</code> babysit that.</p>
+<p>First, a small wrapper script that owns the tmux session. Drop this at <code>/usr/local/bin/claude-rc-wrapper.sh</code> and <code>chmod +x</code> it:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D">#!/usr/bin/env bash</span></span>
+<span class="line"><span style="color:#79B8FF">set</span><span style="color:#79B8FF"> -euo</span><span style="color:#9ECBFF"> pipefail</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">PROJECT_DIR</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"${</span><span style="color:#E1E4E8">HOME</span><span style="color:#9ECBFF">}/remote-claude"</span></span>
+<span class="line"><span style="color:#E1E4E8">SESSION_NAME</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"claude-rc"</span></span>
+<span class="line"><span style="color:#E1E4E8">LOG_FILE</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"${</span><span style="color:#E1E4E8">HOME</span><span style="color:#9ECBFF">}/.claude/rc-session.log"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#79B8FF"> -p</span><span style="color:#9ECBFF"> "$(</span><span style="color:#B392F0">dirname</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$LOG_FILE</span><span style="color:#9ECBFF">")"</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$PROJECT_DIR</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Kill any existing tmux session</span></span>
+<span class="line"><span style="color:#B392F0">tmux</span><span style="color:#9ECBFF"> kill-session</span><span style="color:#79B8FF"> -t</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$SESSION_NAME</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> 2></span><span style="color:#9ECBFF">/dev/null</span><span style="color:#F97583"> ||</span><span style="color:#79B8FF"> true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Start tmux with claude remote-control inside it</span></span>
+<span class="line"><span style="color:#B392F0">tmux</span><span style="color:#9ECBFF"> new-session</span><span style="color:#79B8FF"> -d</span><span style="color:#79B8FF"> -s</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$SESSION_NAME</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF"> -c</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$PROJECT_DIR</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#9ECBFF">  "claude remote-control --remote-control-session-name-prefix minibox --verbose 2>&#x26;1 | tee -a </span><span style="color:#E1E4E8">$LOG_FILE</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Wait for tmux to be alive</span></span>
+<span class="line"><span style="color:#B392F0">sleep</span><span style="color:#79B8FF"> 2</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#F97583"> !</span><span style="color:#B392F0"> tmux</span><span style="color:#9ECBFF"> has-session</span><span style="color:#79B8FF"> -t</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$SESSION_NAME</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> 2></span><span style="color:#9ECBFF">/dev/null</span><span style="color:#E1E4E8">; </span><span style="color:#F97583">then</span></span>
+<span class="line"><span style="color:#79B8FF">  echo</span><span style="color:#9ECBFF"> "Failed to start tmux session"</span><span style="color:#F97583"> >&#x26;2</span></span>
+<span class="line"><span style="color:#79B8FF">  exit</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">fi</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Keep the systemd process alive as long as the tmux session is up.</span></span>
+<span class="line"><span style="color:#6A737D"># When claude exits, the session dies, this loop ends, and systemd</span></span>
+<span class="line"><span style="color:#6A737D"># can apply its Restart policy.</span></span>
+<span class="line"><span style="color:#F97583">while</span><span style="color:#B392F0"> tmux</span><span style="color:#9ECBFF"> has-session</span><span style="color:#79B8FF"> -t</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$SESSION_NAME</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> 2></span><span style="color:#9ECBFF">/dev/null</span><span style="color:#E1E4E8">; </span><span style="color:#F97583">do</span></span>
+<span class="line"><span style="color:#B392F0">  sleep</span><span style="color:#79B8FF"> 5</span></span>
+<span class="line"><span style="color:#F97583">done</span></span></code></pre>
+<p>Then the <code>systemd</code> unit that runs it at boot. Drop this at <code>/etc/systemd/system/claude-rc.service</code>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ini"><code><span class="line"><span style="color:#B392F0">[Unit]</span></span>
+<span class="line"><span style="color:#F97583">Description</span><span style="color:#E1E4E8">=Claude Code Remote Control (minibox)</span></span>
+<span class="line"><span style="color:#F97583">After</span><span style="color:#E1E4E8">=network-online.target</span></span>
+<span class="line"><span style="color:#F97583">Wants</span><span style="color:#E1E4E8">=network-online.target</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[Service]</span></span>
+<span class="line"><span style="color:#F97583">Type</span><span style="color:#E1E4E8">=simple</span></span>
+<span class="line"><span style="color:#F97583">User</span><span style="color:#E1E4E8">=tommy</span></span>
+<span class="line"><span style="color:#F97583">Group</span><span style="color:#E1E4E8">=tommy</span></span>
+<span class="line"><span style="color:#F97583">Environment</span><span style="color:#E1E4E8">=</span><span style="color:#F97583">HOME</span><span style="color:#E1E4E8">=/home/tommy</span></span>
+<span class="line"><span style="color:#F97583">Environment</span><span style="color:#E1E4E8">=</span><span style="color:#F97583">PATH</span><span style="color:#E1E4E8">=/home/tommy/.local/bin:/usr/local/bin:/usr/bin:/bin</span></span>
+<span class="line"><span style="color:#F97583">ExecStart</span><span style="color:#E1E4E8">=/usr/local/bin/claude-rc-wrapper.sh</span></span>
+<span class="line"><span style="color:#F97583">ExecStop</span><span style="color:#E1E4E8">=/usr/bin/tmux kill-session -t claude-rc</span></span>
+<span class="line"><span style="color:#F97583">Restart</span><span style="color:#E1E4E8">=on-failure</span></span>
+<span class="line"><span style="color:#F97583">RestartSec</span><span style="color:#E1E4E8">=10</span></span>
+<span class="line"><span style="color:#F97583">TimeoutStartSec</span><span style="color:#E1E4E8">=60</span></span>
+<span class="line"><span style="color:#F97583">TimeoutStopSec</span><span style="color:#E1E4E8">=15</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">[Install]</span></span>
+<span class="line"><span style="color:#F97583">WantedBy</span><span style="color:#E1E4E8">=multi-user.target</span></span></code></pre>
+<p>Enable and start it:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> daemon-reload</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> enable</span><span style="color:#79B8FF"> --now</span><span style="color:#9ECBFF"> claude-rc.service</span></span></code></pre>
+<p>Now <code>claude remote-control</code> is always running, reconnects after crashes, and because it lives in <code>tmux</code> I can <code>tmux attach -t claude-rc</code> over SSH any time I want to peek at what the agent is doing.</p>
+<h3 id="access-anywhere">Access Anywhere</h3>
+<p>Combining the above with an iPad and a keyboard case (I like <a href="https://www.amazon.com/dp/B0DL2V54T9">this typecase Edge case</a>), I can now:</p>
+<ul>
+<li>use the Claude iOS app to start a session anywhere</li>
+<li>use the Termius iOS app to connect directly to the host over SSH for the things Claude can’t/won’t handle</li>
+</ul>
+<p><img src="/images/typecase-edge-keyboard-ipad.jpg" alt="typecase Edge Keyboard Case for iPad — backlit magic-style keyboard with multi-touch trackpad and floating magnetic stand"></p>
+<p>In practice this means I can kick off a refactor from the couch, watch the PR build and ArgoCD sync from my phone, and only drop into a real SSH session when something needs hands-on debugging. The trackpad and proper keyboard make the iPad feel close enough to a laptop that I stopped reaching for one — and unlike the netbook days, there’s no cramped desktop crammed into a tiny screen, just a chat session driving a machine that already has all my tools.</p>
+<p>Honestly, the setup has been pretty great.</p>  </div> </article>  </main> <footer class="bg-gray-800 text-white py-8"> <div class="container mx-auto px-4"> <div class="flex flex-col md:flex-row justify-between items-center"> <div class="mb-4 md:mb-0"> <p>© 2026 Matthew Domko. All rights reserved.</p> </div> <div class="flex space-x-4"> <a href="https://twitter.com/hashtagcyber" class="text-gray-300 hover:text-white" aria-label="Twitter"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"> <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"></path> </svg> </a> <a href="https://linkedin.com/in/matthewdomko" class="text-gray-300 hover:text-white" aria-label="LinkedIn"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path> </svg> </a> <a href="https://github.com/hashtagcyber" class="text-gray-300 hover:text-white" aria-label="GitHub"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> </div> </div> </div> </footer> </body></html>
